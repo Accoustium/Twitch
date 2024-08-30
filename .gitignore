@@ -214,6 +214,7 @@ celerybeat.pid
 # Environments
 smtp/.env
 load_env/.env
+twitch_auth/.env
 .venv
 env/
 venv/
