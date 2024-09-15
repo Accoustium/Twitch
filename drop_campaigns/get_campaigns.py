@@ -16,6 +16,9 @@ def main():
     if response.status_code == 200:
         read_content(response.content)
 
+    print(response.status_code)
+    print(response.content)
+
 
 def read_content(html_content):
     print(html_content)
