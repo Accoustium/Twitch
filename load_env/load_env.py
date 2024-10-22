@@ -46,6 +46,7 @@ def save_env(url_vars: dict):
                     f"""# Channel setting for Bot
                     CHANNEL={os.environ.get('CHANNEL')}
                     NICK={os.environ.get('NICK')}
+                    TWITCH_TEAM={os.environ.get('TWITCH_TEAM')}
                     CLIENT_ID={os.environ.get('CLIENT_ID')}
                     ACCESS_TOKEN={url_vars["access_token"]}
                     ID_TOKEN={url_vars["id_token"]}
