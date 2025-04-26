@@ -1,7 +1,7 @@
 import os
+import json
 import dotenv
 import requests
-from textwrap import dedent
 from twitch_auth import auth
 
 
@@ -40,18 +40,17 @@ def get_auth():
 
 def save_env(url_vars: dict):
     if "access_token" in url_vars.keys() and "id_token" in url_vars.keys():
+        environ_vars = {
+            "CHANNEL": os.environ.get('CHANNEL'),
+            "NICK": os.environ.get('NICK'),
+            "TWITCH_TEAM": os.environ.get('TWITCH_TEAM'),
+            "CLIENT_ID": os.environ.get('CLIENT_ID'),
+            "ACCESS_TOKEN": url_vars['access_token'],
+            "ID_TOKEN": url_vars['id_token']
+        }
+
         with open('./load_env/.env', 'w') as f:
-            f.write(
-                dedent(
-                    f"""# Channel setting for Bot
-                    CHANNEL={os.environ.get('CHANNEL')}
-                    NICK={os.environ.get('NICK')}
-                    TWITCH_TEAM={os.environ.get('TWITCH_TEAM')}
-                    CLIENT_ID={os.environ.get('CLIENT_ID')}
-                    ACCESS_TOKEN={url_vars["access_token"]}
-                    ID_TOKEN={url_vars["id_token"]}
-                    """
-                )
-            )
+            for k, v in environ_vars.items():
+                f.write(f"{k}={v}\n")
 
     main()

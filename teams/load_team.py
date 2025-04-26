@@ -1,13 +1,15 @@
 import os
 import requests
 
-def main():
+CURR_DIR = os.getcwd()
+
+def main(team):
     response = requests.get(
-        f"https://api.twitch.tv/helix/teams?name={os.environ.get('TWITCH_TEAM')}",
+        f"https://api.twitch.tv/helix/teams?name={team}",
         headers={
             "Authorization": f"Bearer {os.environ.get('ACCESS_TOKEN')}",
             "Client-Id": os.environ.get("CLIENT_ID")
         }
     )
 
-    print(response.content)
+    print(str(response.content))
